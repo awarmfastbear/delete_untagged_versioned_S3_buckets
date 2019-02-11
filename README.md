@@ -2,16 +2,18 @@
 Deletes untagged, versioned, S3 buckets.
 
 
-Usage:
+### Usage:
 
-  ### Dryrun mode
+  #### Dryrun mode
 
   `python3 FindAndDeleteUnTaggedBuckets.py`
   
-  ### Help
+  #### Help
   
   `python3 FindAndDeleteUnTaggedBuckets.py -h`
   
-  ### Destructive / Data Deletion / Bucket Removal Mode
+  #### Destructive / Data Deletion / Bucket Removal Mode
   
   `python3 FindAndDeleteUnTaggedBuckets.py --destructive`
+
+

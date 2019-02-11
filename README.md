@@ -16,6 +16,7 @@ The script will skip over buckets that have MFA delete enabled, S3 object lockin
   #### Destructive / Data Deletion / Bucket Removal Mode
   
   `python3 FindAndDeleteUnTaggedBuckets.py --destructive`
+  
   `python3 FindAndDeleteUnTaggedBuckets.py -d`
 
 

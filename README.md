@@ -1,5 +1,5 @@
 # delete_untagged_versioned_S3_buckets
-Deletes untagged, versioned, S3 buckets.
+Deletes untagged, versioned, S3 buckets that have objects in them.
 
 The script will skip over buckets that have MFA delete enabled, S3 object locking, bucket policies making explicit denies, etc.
 
@@ -16,5 +16,6 @@ The script will skip over buckets that have MFA delete enabled, S3 object lockin
   #### Destructive / Data Deletion / Bucket Removal Mode
   
   `python3 FindAndDeleteUnTaggedBuckets.py --destructive`
+  `python3 FindAndDeleteUnTaggedBuckets.py -d`
 
 

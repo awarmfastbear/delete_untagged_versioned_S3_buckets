@@ -12,14 +12,17 @@ args = parser.parse_args()
 
 def lambda_handler(event, context):
 
-	session = boto3.Session()
-	client = boto3.client('s3', region_name='us-east-1')
-	s3_session = session.resource(service_name='s3')
-	bucket_list_response = client.list_buckets() # get a list of buckets
 	n_of_buckets_to_remove = 0
 	bucket_name_array = []
 	buckets_to_delete_array = []
 	buckets_deleted = []
+
+	client = boto3.client('s3', region_name='us-east-1')
+	bucket_list_response = client.list_buckets() # get a list of buckets
+	session = boto3.Session()
+	s3_session = session.resource(service_name='s3')
+
+
 
 	if not args.destructive:
 		print("                 ==== DRY RUN MODE ENABLED ====")
@@ -48,7 +51,7 @@ def lambda_handler(event, context):
 			print("====================")
 			if args.destructive:
 				print("Attempting to remove bucket: " + b_name)
-				print("Attempting to delete all objects in " + b_name + ".")
+				print("Attempting to delete all objects in: " + b_name + ".")
 				bucket.object_versions.delete()
 			else:
 				print("Dry run mode: Would of attempted to delete all objects in bucket: " + b_name)
@@ -56,10 +59,10 @@ def lambda_handler(event, context):
 		except Exception as e:
 			print(e)
 			print("Failed to list and delete objects, please ensure that you do not have a setting or policy explicitly denying list and delete calls.")
-			continue
+			pass
 		try:
 			if args.destructive:
-				print("All objects deleted, deleting bucket named: " + b_name)
+				print("Attempting to deleting bucket named: " + b_name)
 				bucket.delete()
 				n_of_buckets_to_remove += 1
 				buckets_deleted.append(b_name)
@@ -75,7 +78,7 @@ def lambda_handler(event, context):
 
 	if n_of_buckets_to_remove >= 1:
 		print("Bucket names deleted: " + str(buckets_deleted))
-
+		print("Deleted " + str(len(buckets_deleted)) + " buckets!")
 	if n_of_buckets_to_remove == 0:
 		print("No buckets found that are untagged, script exiting.")
 

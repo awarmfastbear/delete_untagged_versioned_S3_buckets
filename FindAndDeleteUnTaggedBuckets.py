@@ -6,7 +6,7 @@ import operator
 #boto3.set_stream_logger('botocore') #debug logging at the ready!
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument("--destructive", help="WARNING: If specified, buckets that are untagged will be removed. This switch will PERMANENTLY delete objects in nontagged buckets. Please ensure you are comfortable with permanently deleting data in your untagged buckets before running this script.",
+parser.add_argument("--destructive", "--d", "-d", help="WARNING: If specified, buckets that are untagged will be removed. This switch will PERMANENTLY delete objects in nontagged buckets. Please ensure you are comfortable with permanently deleting data in your untagged buckets before running this script.",
                     action="store_true")
 args = parser.parse_args()
 

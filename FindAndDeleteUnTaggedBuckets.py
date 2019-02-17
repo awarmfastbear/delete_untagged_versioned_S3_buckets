@@ -92,4 +92,5 @@ except Exception as e:
     raise
     code = 2
 
+print("If you want to run without dryrun mode, add '-d' as an argument, otherwise use '-h' for help'")
 print("Script exiting! Have nice day!")
